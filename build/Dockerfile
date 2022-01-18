@@ -1,0 +1,1 @@
+FROM frappe/bench:latest

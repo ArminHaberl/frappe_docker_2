@@ -30,7 +30,9 @@ services:
     userns_mode: "host"
 
   frappe:
-    image: frappe/bench:latest
+    image: frappe_bench
+    build:
+      context: ./build
     command: sleep infinity
     restart: on-failure
     environment:
