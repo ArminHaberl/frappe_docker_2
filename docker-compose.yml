@@ -37,10 +37,10 @@ services:
       - SHELL=/bin/bash
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.custom-nginx.rule=Host(${SITES})"
-      - "traefik.http.routers.custom-nginx.entrypoints=websecure"
-      - "traefik.http.routers.custom-nginx.tls.certresolver=myresolver"
-      - "traefik.http.services.custom-nginx.loadbalancer.server.port=8080"
+      - "traefik.http.routers.frappe.rule=Host(${SITES})"
+      - "traefik.http.routers.frappe.entrypoints=websecure"
+      - "traefik.http.routers.frappe.tls.certresolver=myresolver"
+      - "traefik.http.services.frappe.loadbalancer.server.port=8080"
     volumes:
       - ..:/workspace:cached
     working_dir: /workspace/development
