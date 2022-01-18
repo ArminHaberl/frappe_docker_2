@@ -45,7 +45,6 @@ services:
       - "traefik.http.services.frappe.loadbalancer.server.port=8080"
     volumes:
       - ..:/workspace:cached
-    working_dir: /workspace/development
 
   redis-cache:
     image: redis:latest
