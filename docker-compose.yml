@@ -44,7 +44,7 @@ services:
       - "traefik.http.routers.frappe.tls.certresolver=myresolver"
       - "traefik.http.services.frappe.loadbalancer.server.port=8080"
     volumes:
-      - frappe:
+      - frappe-vol:/home/frappe/:rw
 
   redis-cache:
     image: redis:latest
