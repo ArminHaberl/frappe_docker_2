@@ -44,7 +44,7 @@ services:
       - "traefik.http.routers.frappe.tls.certresolver=myresolver"
       - "traefik.http.services.frappe.loadbalancer.server.port=8080"
     volumes:
-      - ..:/workspace:cached
+      - frappe:
 
   redis-cache:
     image: redis:latest
@@ -63,22 +63,6 @@ services:
     restart: on-failure
     volumes:
       - redis-socketio-vol:/data
-
-  mariadb:
-    image: mariadb:10.6
-    restart: on-failure
-    command:
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-      - --skip-character-set-client-handshake
-      - --skip-innodb-read-only-compressed # Temporary fix for MariaDB 10.6
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      # Sometimes db initialization takes longer than 10 seconds and site-creator goes away.
-      # Frappe doesn't use CONVERT_TZ() function that requires time zone info, so we can just skip it.
-      - MYSQL_INITDB_SKIP_TZINFO=1
-    volumes:
-      - mariadb-vol:/var/lib/mysql
 
 volumes:
   mariadb-vol:
