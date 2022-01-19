@@ -41,6 +41,12 @@ services:
       # Sometimes db initialization takes longer than 10 seconds and site-creator goes away.
       # Frappe doesn't use CONVERT_TZ() function that requires time zone info, so we can just skip it.
       - MYSQL_INITDB_SKIP_TZINFO=1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.tcp.routers.mariadb.rule=HostSNI(`*`)"
+      - "traefik.tcp.routers.mariadb.entrypoints=mariadb"
+      - "traefik.tcp.routers.mariadb.service=mariadb-svc"
+      - "traefik.tcp.services.mariadb-svc.loadbalancer.server.port=3306"
     volumes:
       - mariadb-vol:/var/lib/mysql
       
