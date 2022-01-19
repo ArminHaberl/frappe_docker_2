@@ -12,7 +12,7 @@ ENV ADMIN_PASSWORD ${ADMIN_PASSWORD}
 
 RUN bench init --skip-redis-config-generation --frappe-branch version-13 frappe-bench
 
-RUN cd frappe-bench
+WORKDIR /home/frappe/frappe-bench
 
 RUN bench set-redis-cache-host redis-cache:6379 && bench set-redis-queue-host redis-queue:6379 && bench set-redis-socketio-host redis-socketio:6379 && bench set-config -g db_host ${MARIADB_HOST}
 
