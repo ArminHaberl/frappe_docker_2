@@ -1,5 +1,7 @@
 FROM frappe/bench:latest
 
+RUN su frappe
+
 ARG MARIADB_HOST
 ARG MYSQL_ROOT_PASSWORD
 ARG SITE_NAME
