@@ -60,7 +60,7 @@ services:
         - SITE_NAME=${SITE_NAME}
         - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     restart: on-failure
-    command: /create-site
+    command: /create_site
     environment:
       - SHELL=/bin/bash
     labels:
