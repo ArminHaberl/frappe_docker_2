@@ -29,6 +29,7 @@ services:
 
   mariadb:
     image: mariadb:10.6
+    restart: on-failure
     command:
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
@@ -52,7 +53,6 @@ services:
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
         - SITE_NAME=${SITE_NAME}
         - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-    command: sleep infinity
     restart: on-failure
     environment:
       - SHELL=/bin/bash
