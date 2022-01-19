@@ -18,10 +18,12 @@ WORKDIR /home/frappe/frappe-bench
 
 RUN bench set-redis-cache-host redis-cache:6379 && bench set-redis-queue-host redis-queue:6379 && bench set-redis-socketio-host redis-socketio:6379 && bench set-config -g db_host ${MARIADB_HOST}
 
-#RUN bench new-site ${SITE_NAME} --mariadb-root-password ${MYSQL_ROOT_PASSWORD} --admin-password ${ADMIN_PASSWORD} --no-mariadb-socket
+RUN echo "#!/bin/bash" >> create_site.sh
+RUN echo "cd /home/frappe/frappe-bench" >> create_site.sh
+RUN echo "bench new-site ${SITE_NAME} --mariadb-root-password ${MYSQL_ROOT_PASSWORD} --admin-password ${ADMIN_PASSWORD} --no-mariadb-socket" >> create_site.sh
+RUN echo "bench get-app bench_manager" >> create_site.sh
+RUN echo "bench --site ${SITE_NAME} install-app bench_manager" >> create_site.sh
+RUN echo "bench start" >> create_site.sh
 
-#RUN bench get-app bench_manager
-#
-#RUN bench --site ${SITE_NAME} install-app bench_manager
-
-#RUN bench setup production frappe
+RUN cp create_site.sh /create_site
+RUN chmod +x /create_site
