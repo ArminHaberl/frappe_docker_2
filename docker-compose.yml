@@ -21,9 +21,7 @@ services:
       - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
       # middleware redirect for production only
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
-    ports:
-      - "80:80"
-      - "443:443"
+
     volumes:
       - cert-vol:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
