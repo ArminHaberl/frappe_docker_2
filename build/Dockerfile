@@ -25,5 +25,5 @@ RUN echo "bench get-app bench_manager" >> create_site.sh
 RUN echo "bench --site ${SITE_NAME} install-app bench_manager" >> create_site.sh
 RUN echo "bench start" >> create_site.sh
 
-RUN $echo frappe | sudo -S cp create_site.sh /create_site
-RUN $echo frappe | sudo -S chmod +x /create_site
+RUN echo frappe | sudo -S cp create_site.sh /create_site
+RUN echo frappe | sudo -S chmod +x /create_site
