@@ -70,6 +70,9 @@ services:
       - "traefik.http.services.frappe.loadbalancer.server.port=8080"
     volumes:
       - frappe-vol:/home/frappe/
+    ports:
+      - "8000-8005:8000-8005"
+      - "9000-9005:9000-9005"
 
   redis-cache:
     image: redis:latest
